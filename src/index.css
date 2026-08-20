@@ -1,0 +1,134 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Cormorant Garamond", Georgia, "Times New Roman", serif;
+  --font-sans: "Source Sans 3", "Segoe UI", system-ui, sans-serif;
+
+  --color-forest-950: #061510;
+  --color-forest-900: #0b241c;
+  --color-forest-800: #12382c;
+  --color-forest-700: #1a4d3c;
+  --color-forest-600: #246b52;
+  --color-forest-100: #dcede6;
+  --color-forest-50: #eef6f2;
+
+  --color-gold-600: #8f7214;
+  --color-gold-500: #c4a035;
+  --color-gold-400: #d4b44a;
+  --color-gold-300: #e2c96a;
+  --color-gold-100: #f5edd0;
+
+  --color-ivory: #f6f3eb;
+  --color-ivory-dark: #ede8dc;
+  --color-ink: #1c1917;
+  --color-ink-muted: #57534e;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5.5rem;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    font-size: 17px;
+    line-height: 1.65;
+    color: var(--color-ink);
+    background-color: var(--color-ivory);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-gold-500);
+    outline-offset: 3px;
+  }
+
+  ::selection {
+    background: var(--color-gold-100);
+    color: var(--color-forest-900);
+  }
+}
+
+/* Skip link — visible only on keyboard focus */
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -4rem;
+  z-index: 100;
+  border-radius: 0.25rem;
+  background: var(--color-gold-500);
+  color: var(--color-forest-950);
+  padding: 0.5rem 1rem;
+  font-weight: 600;
+}
+.skip-link:focus {
+  top: 1rem;
+}
+
+/* Hairline gold rule used as a section ornament */
+.gold-rule {
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--color-gold-500) 50%,
+    transparent 100%
+  );
+}
+
+/* Corner-frame used around the hero portrait */
+.photo-frame {
+  position: relative;
+}
+.photo-frame::before,
+.photo-frame::after {
+  content: "";
+  position: absolute;
+  width: 3.25rem;
+  height: 3.25rem;
+  border-color: var(--color-gold-500);
+  pointer-events: none;
+  z-index: 2;
+}
+.photo-frame::before {
+  top: -10px;
+  left: -10px;
+  border-top: 1px solid;
+  border-left: 1px solid;
+}
+.photo-frame::after {
+  bottom: -10px;
+  right: -10px;
+  border-bottom: 1px solid;
+  border-right: 1px solid;
+}
+
+/* Custom scrollbar for a quieter chrome */
+@media (min-width: 1024px) {
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--color-ivory-dark);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-forest-700);
+    border-radius: 999px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
